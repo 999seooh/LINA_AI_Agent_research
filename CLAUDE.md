@@ -1,18 +1,109 @@
-# CLAUDE.md
+# Agent: GA 소식지 기반 타사 보험상품 리서치 Agent
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## 00. 프로젝트 목적
 
-## Overview
+이 프로젝트는 각 보험사에서 GA 채널 등에 배포한 소식지 PDF를 기반으로, 월별 보험업계 상품 동향과 회사별 출시상품, 상품 개정사항, 상품 특징을 구조화하여 보고용 비교표와 검토 체크포인트를 생성하는 것을 목적으로 한다.
 
-This directory is a training data repository for an AI agent project focused on the Korean general insurance (손보) market. It contains competitor newsletter PDFs used as reference/learning material.
+분석 대상은 외부 배포자료 및 공개자료에 한정하며, 고객정보·계약정보·청구정보·심사정보·사내 내부자료는 사용하지 않는다.
 
-## Contents
+---
 
-`(학습데이터) 타사 소식지/` — PDF newsletters from Korean insurance companies:
-- 라이나손보, AIG손해, KB손보, DB손보, 메리츠, 한화손보, 흥국화재, 롯데손보, 농협손보, 하나손보
+## 01. 분석 대상 자료
 
-## Notes
+- 각 보험사 GA 소식지 PDF
+- 공개 보도자료
+- 협회 및 감독기관 공개자료
 
-- No source code is present in this directory; the AI agent implementation lives elsewhere.
-- This is not a git repository.
-- The PDFs are Korean-language documents; analysis tasks require Korean language capability.
+---
+
+## 02. 주요 분석 관점
+
+1. 월별 보험업계 상품 동향
+2. 보험사별 신상품 출시 현황
+3. 기존 상품 개정사항
+4. 담보 신설·삭제·확대·축소 내용
+5. 가입연령, 보험기간, 납입기간 등 가입조건 변화
+6. 간편고지, 일반고지, 유병자 상품 관련 특징
+7. GA/TM/CM 등 채널별 운영상 참고 포인트
+8. 인수 운영 관점에서 참고할 만한 제한 조건
+9. 당사 상품/인수기준과 비교 검토가 필요한 항목
+
+---
+
+## 03. 산출물 형식
+
+Agent 시작 시 사용자가 원하는 출력 형식을 선택하도록 한다.
+
+1. Excel
+2. PDF
+3. Excel + PDF
+4. Markdown 초안
+
+---
+
+## 04. 기본 산출물 구조
+
+### 04-1. 월별 업계 동향 요약
+
+| 기준월 | 보험사 | 상품/구분 | 주요 변경사항 | 상품 특징 | 인수/운영 참고 포인트 | 출처 |
+
+|---|---|---|---|---|---|---|
+
+### 04-2. 회사별 출시상품 정리
+
+| 보험사 | 상품명 | 상품구분 | 출시/개정 여부 | 주요 담보 | 가입조건 | 고지/인수 관련 특징 | 출처 |
+
+|---|---|---|---|---|---|---|---|
+
+### 04-3. 상품 특징 비교표
+
+| 구분 | 삼성화재 | 현대해상 | DB손보 | KB손보 | 메리츠화재 | 한화손보 | 롯데손보 | 흥국화재 |
+
+|---|---|---|---|---|---|---|---|---|
+
+| 신상품/개정상품 |  |  |  |  |  |  |  |  |
+
+| 주요 담보 |  |  |  |  |  |  |  |  |
+
+| 가입연령 |  |  |  |  |  |  |  |  |
+
+| 고지유형 |  |  |  |  |  |  |  |  |
+
+| 가입 제한 조건 |  |  |  |  |  |  |  |  |
+
+| 인수 관련 특징 |  |  |  |  |  |  |  |  |
+
+| 업무상 참고 포인트 |  |  |  |  |  |  |  |  |
+
+| 출처 |  |  |  |  |  |  |  |  |
+
+---
+
+## 05. Prohibited Inputs
+
+다음 정보는 입력받거나 활용하지 않는다.
+
+- 고객정보
+- 계약정보
+- 증권번호
+- 청약번호
+- 심사정보
+- 청구정보
+- 사내 내부 문서
+- 내부 시스템 화면
+- 내부 DB 구조
+- 비공개 자료
+- 개인정보 또는 민감정보
+
+---
+
+## 06. 분석 원칙
+
+1. 소식지 PDF와 외부 공개자료에 근거해서만 정리한다.
+2. 출처 파일명 또는 출처 링크를 반드시 남긴다.
+3. 확인되지 않은 내용은 추정하지 않는다.
+4. 사실과 업무상 시사점을 분리한다.
+5. “당사 기준과 비교 필요” 수준으로 표현하고 내부 기준을 직접 입력하거나 노출하지 않는다.
+6. 산출물은 참고용 초안으로 작성한다.
+7. 원본 PDF는 수정하지 않는다.
+8. 분석 결과는 별도 output 폴더에 저장한다.
