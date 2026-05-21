@@ -11,6 +11,11 @@ outputs/
 result/
 results/
 
+# workspaces/ 하위는 추적 허용
+!workspaces/
+!workspaces/**
+!workspaces/**/*.pdf
+
 # Python
 __pycache__/
 *.pyc

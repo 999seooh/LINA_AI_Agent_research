@@ -1,0 +1,157 @@
+/* ============================================================
+   GA 소식지 분석 보고서 — 스타일
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #f0f2f5;
+}
+
+.page-wrapper {
+  max-width: 1150px;
+  margin: 32px auto;
+  background: #fff;
+  padding: 48px 56px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+}
+
+/* ── 헤더 ── */
+.report-header {
+  border-bottom: 3px solid #1a4e8a;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+.report-header h1 {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1a4e8a;
+  letter-spacing: -0.3px;
+}
+.report-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #555;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #e8f0fb;
+  color: #1a4e8a;
+}
+.badge.draft { background: #fff3cd; color: #856404; }
+
+/* ── 안내박스 ── */
+.info-box {
+  background: #f0f5ff;
+  border-left: 4px solid #1a4e8a;
+  padding: 12px 16px;
+  margin-bottom: 32px;
+  font-size: 12px;
+  color: #333;
+  border-radius: 0 4px 4px 0;
+  line-height: 1.8;
+}
+.info-box strong { color: #1a4e8a; }
+
+/* ── 섹션 ── */
+.section { margin-bottom: 44px; }
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a4e8a;
+  border-bottom: 2px solid #d0dff5;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  margin: 20px 0 8px;
+  padding-left: 8px;
+  border-left: 3px solid #1a4e8a;
+}
+
+/* ── 표 ── */
+.tbl-wrap { overflow-x: auto; margin-bottom: 12px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+thead tr { background: #1a4e8a; color: #fff; }
+thead th {
+  padding: 9px 10px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+tbody tr:nth-child(even) { background: #f6f9ff; }
+tbody tr:hover { background: #eaf1fb; }
+tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+tbody td:last-child { border-right: none; }
+
+/* 비교표 첫 열 강조 */
+table.compare tbody td:first-child {
+  font-weight: 700;
+  background: #f0f5ff;
+  white-space: nowrap;
+}
+
+.td-na { color: #aaa; font-style: italic; }
+.td-check { color: #b45309; font-weight: 600; }
+
+/* ── 태그 ── */
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 2px;
+  white-space: nowrap;
+}
+.tag-new  { background: #dcfce7; color: #166534; }
+.tag-rev  { background: #fef9c3; color: #854d0e; }
+.tag-info { background: #e0f2fe; color: #0369a1; }
+
+/* ── 출처 각주 ── */
+.source-note {
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+}
+.source-note::before { content: "※ 출처: "; }
+
+/* ── 리서치 메모 ── */
+.memo-list { list-style: disc; padding-left: 20px; font-size: 12px; }
+.memo-list li { margin-bottom: 6px; }
+
+/* ── 인쇄 ── */
+@media print {
+  body { background: #fff; font-size: 11px; }
+  .page-wrapper { margin: 0; padding: 18mm 16mm; box-shadow: none; max-width: none; }
+  .section { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  .section-title { page-break-after: avoid; }
+  a { text-decoration: none; color: inherit; }
+}
