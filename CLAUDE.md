@@ -67,3 +67,40 @@
 4. 데이터 분석 문서는 기준일, 집계 단위, 필터 조건, 검증 포인트를 반드시 포함한다.
 
 5. 산출물은 표 또는 체크리스트 중심으로 작성한다.
+
+# Project Folder Rules
+
+이 프로젝트의 Skill 정의 파일과 실제 작업 파일은 분리한다.
+
+## Skill Definition
+
+`.claude/skills/` 하위 폴더에는 Skill 실행 지침, 템플릿, 참고 기준만 저장한다.
+
+실제 업무용 PDF, Excel, CSV, 분석 결과물은 `.claude/skills/`에 저장하지 않는다.
+
+## Workspace
+
+실제 작업 파일은 `workspaces/` 하위에 업무별로 분리한다.
+
+- `workspaces/uw-test-scenario/`
+- `workspaces/ga-product-research/`
+
+각 업무 폴더는 `input/`과 `output/`을 별도로 가진다.
+
+## Input / Output Rule
+
+UW 테스트 시나리오 관련 입력물은 다음 위치에 저장한다.
+
+- `workspaces/uw-test-scenario/input/`
+
+UW 테스트 시나리오 산출물은 다음 위치에 저장한다.
+
+- `workspaces/uw-test-scenario/output/`
+
+GA 상품 리서치 관련 입력물은 다음 위치에 저장한다.
+
+- `workspaces/ga-product-research/input/`
+
+GA 상품 리서치 산출물은 다음 위치에 저장한다.
+
+- `workspaces/ga-product-research/output/`
