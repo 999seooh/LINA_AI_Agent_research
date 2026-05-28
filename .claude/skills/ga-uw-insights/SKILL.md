@@ -33,7 +33,7 @@ GA 소식지 분석 파이프라인의 **세 번째 단계**이다.
 
 ## 선행 조건
 
-`/ga-trend-extractor`와 `/ga-comparison` 실행 완료 후 사용한다.
+`/ga-trend-extractor` 실행 완료 후 사용한다.
 
 ## 다음 단계
 
