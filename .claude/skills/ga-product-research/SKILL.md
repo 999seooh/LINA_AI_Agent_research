@@ -12,6 +12,43 @@
 
 ---
 
+## 00-1. 파이프라인 흐름
+
+```
+[1단계] /ga-parser
+  └─ input/ga-newsletters/*.pdf 읽기
+  └─ output/extracted-summary/{보험사명}_{기준월}.md 생성
+
+        │
+        ▼
+
+[2단계] /ga-trend-extractor
+  └─ extracted-summary 기반 트렌드·체크포인트 추출
+  └─ output/uw-insights/trend-checkpoints.md 생성
+
+        │
+        ▼
+
+[3단계] /ga-uw-insights
+  └─ trend-checkpoints.md + extracted-summary 기반 UW 인사이트 도출
+  └─ output/uw-insights/uw-insights.md 생성
+
+        │
+        ▼
+
+[4단계] /ga-report-writer
+  └─ 모든 output 기반 HTML 보고서 생성
+  └─ output/final-report/report.html + style.css 생성
+
+─────────────────────────────────────────────
+[독립 실행] /ga-terms-analyzer
+  └─ input/terms/*.pdf 약관 분석 (파이프라인과 무관하게 단독 실행 가능)
+  └─ output/terms-analysis/{보험사명}_{상품명}_{기준년월}_terms.md 생성
+  └─ 결과는 /ga-uw-insights 또는 /ga-report-writer에 보조 입력으로 연계 가능
+```
+
+---
+
 ## 01. 분석 대상 자료
 
 - `iga-product-research/input/` 폴더 내 PDF
