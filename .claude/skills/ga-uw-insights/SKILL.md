@@ -33,8 +33,12 @@ GA 소식지 분석 파이프라인의 **세 번째 단계**이다.
 
 ## 선행 조건
 
-`/ga-trend-extractor` 실행 완료 후 사용한다.
+`/ga-trend-extractor` 실행 완료 후 사용한다. (Step 2 산출물 필요)
 
 ## 다음 단계
 
-- `/ga-report-writer` — 최종 HTML 보고서 생성
+- `/ga-report-writer` — 최종 HTML 보고서 생성 (Step 4)
+
+파이프라인 전체를 처음부터 한 번에 실행하려면:
+
+- `/ga-run-all` — Step 1~4 자동 순서 실행
