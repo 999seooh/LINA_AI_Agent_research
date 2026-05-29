@@ -11,10 +11,11 @@ outputs/
 result/
 results/
 
-# workspaces/ 하위는 추적 허용
+# workspaces/ output만 추적, input은 제외
 !workspaces/
 !workspaces/**
-!workspaces/**/*.pdf
+workspaces/**/input/
+workspaces/**/input/**
 
 # Python
 __pycache__/
