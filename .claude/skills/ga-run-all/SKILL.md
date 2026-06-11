@@ -16,22 +16,22 @@ GA 소식지 분석 파이프라인 4단계를 순서대로 자동 실행한다.
 [Step 1] ga-parser
   입력: workspaces/ga-product-research/input/ga-newsletters/*.pdf
   출력: workspaces/ga-product-research/output/extracted-summary/{보험사명}_{기준월}.md
-  지침: .claude/agents/ga-parser.md
+  지침: .claude/agents/ga/ga-parser.md
 
 [Step 2] ga-trend-extractor
   입력: output/extracted-summary/*.md (Step 1 산출물 전체)
   출력: output/uw-insights/trend-checkpoints.md
-  지침: .claude/agents/ga-trend-extractor.md
+  지침: .claude/agents/ga/ga-trend-extractor.md
 
 [Step 3] ga-uw-insights
   입력: output/uw-insights/trend-checkpoints.md + output/extracted-summary/*.md
   출력: output/uw-insights/uw-insights.md
-  지침: .claude/agents/ga-uw-insights.md
+  지침: .claude/agents/ga/ga-uw-insights.md
 
 [Step 4] ga-report-writer
   입력: output/extracted-summary/*.md + output/uw-insights/*.md
   출력: output/final-report/report.html + output/final-report/style.css
-  지침: .claude/agents/ga-report-writer.md
+  지침: .claude/agents/ga/ga-report-writer.md
 ```
 
 ---

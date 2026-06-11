@@ -10,10 +10,10 @@ GA 소식지 분석 파이프라인의 **세 번째 단계**이다.
 
 ## 실행 방법
 
-이 Skill이 호출되면 `.claude/agents/ga-uw-insights.md`의 지침을 따라 실행한다.
+이 Skill이 호출되면 `.claude/agents/ga/ga-uw-insights.md`의 지침을 따라 실행한다.
 
 1. 아래 입력 파일을 확인한다.
-2. `.claude/agents/ga-uw-insights.md`의 도출 항목 기준으로 UW 관점 인사이트를 작성한다.
+2. `.claude/agents/ga/ga-uw-insights.md`의 도출 항목 기준으로 UW 관점 인사이트를 작성한다.
 3. 결과를 `workspaces/ga-product-research/output/uw-insights/uw-insights.md`로 저장한다.
 
 ---

@@ -10,11 +10,11 @@ GA 보험 관련 자료 분석 파이프라인의 **첫 번째 단계**이다.
 
 ## 실행 방법
 
-이 Skill이 호출되면 `.claude/agents/ga-parser.md`의 지침을 따라 실행한다.
+이 Skill이 호출되면 `.claude/agents/ga/ga-parser.md`의 지침을 따라 실행한다.
 
 1. `workspaces/ga-product-research/input/ga-newsletters/` 하위 PDF 파일을 확인한다.
 2. 처리할 파일을 사용자에게 확인하거나, 명시된 경우 해당 파일만 처리한다.
-3. 각 PDF에 대해 `.claude/agents/ga-parser.md`의 추출 항목 기준으로 파싱을 수행한다.
+3. 각 PDF에 대해 `.claude/agents/ga/ga-parser.md`의 추출 항목 기준으로 파싱을 수행한다.
 4. 결과를 `workspaces/ga-product-research/output/extracted-summary/`에 보험사별 Markdown 파일로 저장한다.
 
 ---
