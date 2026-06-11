@@ -14,8 +14,9 @@ results/
 # workspaces/ output만 추적, input은 제외
 !workspaces/
 !workspaces/**
-workspaces/**/input/
-workspaces/**/input/**
+workspaces/**/input/*
+workspaces/**/input/**/*
+!workspaces/**/input/requirements.md
 
 # Python
 __pycache__/
