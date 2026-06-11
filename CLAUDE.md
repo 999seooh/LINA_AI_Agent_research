@@ -85,6 +85,7 @@
 - `workspaces/uw-test-scenario/`
 - `workspaces/ga-product-research/`
 - `workspaces/insurance-law-ref/`
+- `workspaces/uw-report-automation/`
 
 각 업무 폴더는 `input/`과 `output/`을 별도로 가진다.
 
@@ -114,3 +115,13 @@ GA 상품 리서치 산출물은 다음 위치에 저장한다.
 보험 법령 참조 산출물(Q&A 로그)은 다음 위치에 저장한다.
 
 - `workspaces/insurance-law-ref/output/qa-log/`
+
+UW 리포트 자동화 관련 입력물은 다음 위치에 저장한다.
+
+- `workspaces/uw-report-automation/input/` (요구사항 정의서)
+- `workspaces/uw-report-automation/input/masked-data/` (마스킹 처리 데이터)
+- `workspaces/uw-report-automation/input/dummy-data/` (더미데이터)
+
+UW 리포트 자동화 산출물은 다음 위치에 저장한다.
+
+- `workspaces/uw-report-automation/output/` (모델 설계안, 대시보드 설계안, 리포트 초안)
