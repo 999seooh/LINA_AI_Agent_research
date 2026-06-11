@@ -46,16 +46,12 @@
 | left(closeym,4) | 마감년도 | 날짜(YYYY) | 기간 집계 기준 / 실데이터 제공 시 확정 |
 | Elapsedmonth | 경과월 | 날짜(YYYYMM) | 기간 집계 기준 / 실데이터 제공 시 확정 |
 | newchannel | 채널 | 범주 | 채널별 분리 분석 / 실데이터 제공 시 확정 |
-
 | Uw_product_G | 상품구분 | 범주 | 상품별 분류 기준 / 실데이터 제공 시 확정 |
 | Uw_productgroup_G | 상품대분류 | 범주 | 상위 분류 / 실데이터 제공 시 확정 |
-
 | Uw_treaty_G | 담보군 | 범주 | 담보별 분류 기준 / 실데이터 제공 시 확정 |
 | Uw_treatygroup_G | 담보구분 | 범주 | 담보별 분류 기준 / 실데이터 제공 시 확정 |
 | Uw_treatygroup_seq | 담보대분류 | 범주 | 담보별 분류 기준 / 실데이터 제공 시 확정 |
-
 | 플랜구분 | 플랜구분 | 범주 | 플랜별 분류 기준 / 실데이터 제공 시 확정 |
-
 | agegroup2 | 연령2 | 범주 | 비식별 그룹 기준 / 실데이터 제공 시 확정 |
 | sum(GWP) | 보험료 | 수치(금액) | LR(GWP) 손해율 분자 요소 : 분자 = (GWP-ROP) / 실데이터 제공 시 확정 |
 | sum(riskP) | 위험보험료 | 수치(금액) | LR(riskP) 손해율 분자 / 실데이터 제공 시 확정 |
@@ -66,7 +62,6 @@
 | sum(ult_loss_Amt) | IBNR 적용 후 보험금 | 수치(금액) | LR(GWP) 손해율 분자 / 실데이터 제공 시 확정 |
 | sum(claims) | # of claim 청구금액 | 수치(금액) | 청구 금액 / 실데이터 제공 시 확정 |
 | sum(ult_claims) | IBNR 적용 후 # of claim 청구금액 | 수치(금액) | 청구 금액(IBNR 적용 후) / 실데이터 제공 시 확정 |
-
 | checksellerId is not Null | 유의취급자 | 범주 | 비식별 기준 / 실데이터 제공 시 확정 |
 | checkInsuredIdkey is not Null | 유의피보험자 | 범주 | 비식별 기준 / 실데이터 제공 시 확정 |
 | groupId_groupKorName | 대리점명 | 범주 | 비식별 그룹 기준 / 실데이터 제공 시 확정 |
