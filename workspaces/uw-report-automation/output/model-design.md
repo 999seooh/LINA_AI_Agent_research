@@ -251,6 +251,7 @@
 |---|---|
 | 분석 단위 | 청약월(코호트) × 기준년월 매트릭스 |
 | 유지율 산식 | 유지MMP / 모집MMP × 100 (금액 기준) |
+| 채널 필터 | channel = 'DM' (DM은 GA·CM·OB를 포괄하는 상위 채널 구분) |
 | 주요 분석 관점 | 코호트별 MMP 유지율, 주요 회차 이탈 패턴, 채널·상품별 유지 성과, 손해 연계 분석 |
 | 기대 효과 | 조기 이탈 회차 식별, 유지율 취약 채널·상품군 관리, 유지율-손해율 연계 감지 |
 
@@ -265,17 +266,23 @@
 | 상품그룹 | 상품 그룹 | 중간 분류 |
 | 상품명 | 상품명 | 상품 식별용 |
 | 플랜구분 | 플랜 구분 | 플랜별 유지율 분리 |
+| 담보군 | 담보 그룹 (string_agg) | 계약 내 담보 조합 |
+| 담보구분 | 담보 그룹 상위 분류 | 담보 유형 구분 |
 | 연령대 | 연령 구간 | 비식별 그룹 |
 | TMRID | TM 담당자 ID | 비식별 사용 |
+| TMR명 | TM 담당자 한글명 | 비식별 사용 |
 | center명 | 센터명 | 조직 단위 집계 |
 | agency명 | 대리점명 | 채널 단위 집계 |
-| 채널 | GA / CM / OB / 기타 | 채널별 분리 |
-| 회차 | 납입 회차 | 경과 기간 기준 |
+| 채널 | GA / CM / OB — channel_1 컬럼 기준 | DM 하위 세분화 채널 |
+| 유의취급자 | 유의취급자 여부 (Y/N) | UnderwritingUserRuleCheck 기준 |
+| 회차 | 납입 회차 (INT) | 경과 기간 기준 |
 | 회차구분 | 주요회차(4·7·13·25) / 그외 | 조기 이탈 핵심 시점 |
 | 모집MMP | 신계약 월납보험료 | 유지율 분모 기준 |
 | 유지MMP | 유지 월납보험료 | 유지율 분자 기준 |
 | 총지급보험금 | 총 지급 보험금 | 손해 연계 지표 |
-| 월납보험료 | 월납 보험료 | 보조 기준 |
+| 최초청구월 | 최초 사고 접수 연월 | 사고 시점 추적 |
+| 최초사고일 | 최초 사고 발생일 | 사고 시점 추적 |
+| 월납보험료 | 월납 보험료 | 연납 시 ÷12 환산 적용 |
 | riskP | 위험보험료 | M-01·M-02 공통 체계 |
 | GWP | 보험료 | M-01·M-02 공통 체계 |
 | loss_Amt | 보험금 | 손해율 연계 |
@@ -432,6 +439,33 @@
 | 상품·플랜 포트폴리오 최적화 | 상품군·플랜별 유지율 취약 구간 식별로 인수 기준 재검토 근거 제공 |
 | 조직 단위 관리 | agency명 → center명 드릴다운으로 조직별 유지 성과 차이 파악 및 관리 지원 |
 | 보고 자동화 | 월별 유지율 집계 로직 표준화로 수작업 보고 오류 감소 |
+
+---
+
+### 6. SQL 구현 이력
+
+#### 6.1 구현 파일
+
+| 구분 | 경로 |
+|---|---|
+| 수정본 (현행 기준) | `workspaces/uw-report-automation/input/m02_persistency_query_fixed.sql` |
+
+#### 6.2 원본 SQL 버그 수정 내역 (2026-06-12)
+
+| Fix | 위치 | 오류 내용 | 수정 내용 |
+|---|---|---|---|
+| Fix-1 | Step 5 `#Temp_Claim_Flag` SELECT·GROUP BY | `a.기준년월` 참조 — 서브쿼리에 해당 컬럼 없음 (실제 컬럼명: `baseYM`) | `a.기준년월` → `a.baseYM` |
+| Fix-2 | Step 2-2 `#Temp_ContractOrg_2` | `STRING_AGG`, `MAX` 집계 컬럼에 alias 누락 — Step 7에서 컬럼 참조 불가 | `AS Uw_treaty_G`, `AS Uw_treatygroup_G` 추가 |
+| Fix-3 | Step 7 `#final_SH` SELECT·WHERE·GROUP BY | `CF.baseYM` 등 5개 컬럼을 `#Temp_Claim_Flag`(CF) alias로 참조 — 해당 컬럼 없음 | `CF.*` → `a.baseYM`, `a.appMonth`, `a.policyNo`, `a.channel_1`, `a.tenure` |
+| Fix-4 | Step 7 `#final_SH` FROM | `#Temp_ContractOrg_2` JOIN 누락 — `담보군`, `담보구분` 컬럼 참조 불가 | `LEFT JOIN #Temp_ContractOrg_2 COV` 추가, `CO.Uw_treaty_G` → `COV.Uw_treaty_G` |
+| Fix-5 | Step 7 `#final_SH` GROUP BY | `CF.총지급보험금` — SELECT에서 SUM 집계 중인 컬럼을 GROUP BY에 중복 포함 | GROUP BY에서 `CF.총지급보험금` 제거 |
+| Fix-6 | Step 7 `#final_SH` WHERE | `CF.tenure <> 0` — `tenure` 컬럼은 `#Temp_Claim_Flag`에 없음 | `CF.tenure` → `a.tenure` |
+| Fix-7 | 최종 출력 SELECT CASE | `회차 IN ('4','7','13','25')` — 회차 컬럼(INT)을 문자열과 비교 | `IN (4, 7, 13, 25)` (정수형으로 통일) |
+
+#### 6.3 채널 구조 확인 사항
+
+- `channel = 'DM'`은 DM 채널 전체 범위 필터 (GA·CM·OB를 포괄하는 상위 구분)
+- 출력 컬럼 `채널`은 `channel_1` 컬럼 기준으로 GA·CM·OB 세분화 적용
 
 ---
 
