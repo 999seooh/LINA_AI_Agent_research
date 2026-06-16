@@ -86,6 +86,7 @@
 - `workspaces/ga-product-research/`
 - `workspaces/insurance-law-ref/`
 - `workspaces/uw-report-automation/`
+- `workspaces/uw-product-planning/`
 
 각 업무 폴더는 `input/`과 `output/`을 별도로 가진다.
 
@@ -125,3 +126,11 @@ UW 리포트 자동화 관련 입력물은 다음 위치에 저장한다.
 UW 리포트 자동화 산출물은 다음 위치에 저장한다.
 
 - `workspaces/uw-report-automation/output/` (모델 설계안, 대시보드 설계안, 리포트 초안)
+
+UW 상품 기획 관련 입력물은 다음 위치에 저장한다.
+
+- `workspaces/uw-product-planning/input/` (기획 요청 자료, 기초서류 참고본)
+
+UW 상품 기획 산출물은 다음 위치에 저장한다.
+
+- `workspaces/uw-product-planning/output/` (인수기준 검토 초안, 담보 한도 기획안, 상품 개정 검토 문서)
